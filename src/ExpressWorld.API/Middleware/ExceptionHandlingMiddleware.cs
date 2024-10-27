@@ -30,16 +30,11 @@ namespace ExpressWorld.API.Middleware
         {
             _logger.LogError(exception, "An unhandled exception has occurred.");
 
-            // Set the response status code
             context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
 
             var result = JsonSerializer.Serialize(new { error = "An error occurred while processing your request." });
             context.Response.ContentType = "application/json";
             return context.Response.WriteAsync(result);
-
-            // Redirect to the error page
-            // context.Response.Redirect("/Error");
-            return Task.CompletedTask;
         }
     }
 }
