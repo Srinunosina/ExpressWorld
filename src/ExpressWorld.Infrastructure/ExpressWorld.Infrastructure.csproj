@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Adapters\**" />
+    <Compile Remove="Configurations\**" />
+    <Compile Remove="DataSources\**" />
+    <Compile Remove="Factories\**" />
+    <Compile Remove="Persistence\**" />
+    <EmbeddedResource Remove="Adapters\**" />
+    <EmbeddedResource Remove="Configurations\**" />
+    <EmbeddedResource Remove="DataSources\**" />
+    <EmbeddedResource Remove="Factories\**" />
+    <EmbeddedResource Remove="Persistence\**" />
+    <None Remove="Adapters\**" />
+    <None Remove="Configurations\**" />
+    <None Remove="DataSources\**" />
+    <None Remove="Factories\**" />
+    <None Remove="Persistence\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExpressWorld.Application\ExpressWorld.Application.csproj" />
+    <ProjectReference Include="..\ExpressWorld.Core\ExpressWorld.Core.csproj" />
+    <ProjectReference Include="..\ExpressWorld.Shared\ExpressWorld.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Data\BigGuy.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\SomeOtherGuy.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\TourGuy.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

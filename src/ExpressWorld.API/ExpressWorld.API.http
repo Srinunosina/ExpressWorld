@@ -1,0 +1,6 @@
+@ExpressWorld.API_HostAddress = http://localhost:5227
+
+GET {{ExpressWorld.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
