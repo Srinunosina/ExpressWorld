@@ -42,7 +42,9 @@ namespace ExpressWorld.Shared.Adapters
                     // Deserialize the data from the specified root element into a list of TDto
                     var supplierData = JsonSerializer.Deserialize<List<TDto>>(rootElement.GetRawText(), options);
 
-                    return _mapper.Map<IEnumerable<Product>>(supplierData);
+                    // Extract file name without extension as SupplierName
+                    var supplierName = Path.GetFileNameWithoutExtension(_filePath);
+                    return _mapper.Map<IEnumerable<Product>>(supplierData, opt => opt.Items["SupplierName"] = supplierName);
                 }
             }
         }
