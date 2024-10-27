@@ -1,6 +1,4 @@
-﻿using ExpressWorld.Application.DTOs;
-using ExpressWorld.Application.Queries;
-using ExpressWorld.Core.Entities;
+﻿using ExpressWorld.Core.Entities;
 
 namespace ExpressWorld.Application.Repositories
 {

@@ -7,9 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="NewFolder\" />
+    <Compile Remove="Common\**" />
+    <Compile Remove="Enums\**" />
+    <Compile Remove="Exceptions\**" />
+    <Compile Remove="Interfaces\**" />
+    <Compile Remove="ValueObjects\**" />
+    <EmbeddedResource Remove="Common\**" />
+    <EmbeddedResource Remove="Enums\**" />
+    <EmbeddedResource Remove="Exceptions\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <EmbeddedResource Remove="ValueObjects\**" />
+    <None Remove="Common\**" />
+    <None Remove="Enums\**" />
+    <None Remove="Exceptions\**" />
+    <None Remove="Interfaces\**" />
+    <None Remove="ValueObjects\**" />
   </ItemGroup>
 
 </Project>

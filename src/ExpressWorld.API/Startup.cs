@@ -4,6 +4,7 @@ using ExpressWorld.Application.Repositories;
 using ExpressWorld.Application.Services;
 using ExpressWorld.Infrastructure.Repositories;
 using ExpressWorld.Shared.Adapters;
+using ExpressWorld.Shared.Configurations;
 using ExpressWorld.Shared.Factories;
 using ExpressWorld.Shared.Mappings;
 using MediatR;

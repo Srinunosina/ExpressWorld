@@ -40,9 +40,7 @@ namespace ExpressWorld.Shared.Mappings
               .ForMember(dest => dest.DestinationName, opt => opt.MapFrom(src => "Unknown Destination")); //opt => opt.Ignore());
 
             CreateMap<Product, ProductDTO>()
-            //.ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price))  // Optional, direct mapping
-            //.ForMember(dest => dest.SupplierName, opt => opt.MapFrom(src => src.SupplierName))
-            .ForMember(dest => dest.DestinationName, opt => opt.NullSubstitute("Unknown Destination"))  // Default value if null
+            .ForMember(dest => dest.DestinationName, opt => opt.NullSubstitute("Unknown Destination"))
             .ForSourceMember(src => src.ImageUrls, opt => opt.DoNotValidate());  // Ignore ImageUrls if in Product
         }
     }
