@@ -49,6 +49,8 @@ namespace ExpressWorld.Shared.Mappings
                 .ForSourceMember(src => src.ImageUrls, opt => opt.DoNotValidate());  // Ignore ImageUrls if in Product
         }
 
+        #region  Mapping profile for generic DTO based approach    
+    
         //public AutoMapperProfile()
         //{
         //    // Mapping from Specific DTOs to Product
@@ -87,5 +89,7 @@ namespace ExpressWorld.Shared.Mappings
         //        .ForMember(dest => dest.DestinationName, opt => opt.NullSubstitute("Unknown Destination"))
         //        .ForSourceMember(src => src.ImageUrls, opt => opt.DoNotValidate());  // Ignore ImageUrls if in Product
         //}
+
+        #endregion
     }
 }

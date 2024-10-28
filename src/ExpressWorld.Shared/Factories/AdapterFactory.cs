@@ -19,6 +19,11 @@ namespace ExpressWorld.Shared.Factories
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Creates and returns a collection of product adapters based on the supplier configurations.
+        /// </summary>
+        /// <returns>Returns list of ProductAdapters that containing instances of various implementations (JSON, API, DB, CSV).</returns>
+        /// <exception cref="NotImplementedException">Thrown when a data source type does not have a corresponding adapter implemented.</exception>
         public IEnumerable<IProductAdapter> CreateAdapters()
         {
             var adapters = new List<IProductAdapter>();

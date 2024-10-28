@@ -8,6 +8,7 @@ using ExpressWorld.Shared.Factories;
 using ExpressWorld.Shared.Mappings;
 using MediatR;
 using Microsoft.Extensions.Options;
+using System.Reflection;
 
 namespace ExpressWorld.API
 {
@@ -42,7 +43,12 @@ namespace ExpressWorld.API
             // Add services to the container.
             services.AddControllers();
             services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

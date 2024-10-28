@@ -16,6 +16,13 @@ namespace ExpressWorld.Application.Services
             _mapper = mapper;
         }
 
+        /// <summary>
+        /// This method retrieves all products from the repository and then applies various filters and returns the results are paginated 
+        /// using PageIndex and PageSize to return only the relevant subset.
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
         public async Task<IReadOnlyCollection<ProductDTO>> SearchProductsAsync(SearchProductsQuery query, CancellationToken cancellationToken)
         {
             var products = await _productRepository.GetAllProductsAsync(cancellationToken);

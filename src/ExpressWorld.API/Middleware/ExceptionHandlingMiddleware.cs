@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net;
 using System.Text.Json;
 
 namespace ExpressWorld.API.Middleware
@@ -28,12 +29,42 @@ namespace ExpressWorld.API.Middleware
 
         private Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
-            _logger.LogError(exception, "An unhandled exception has occurred.");
+            _logger.LogError(exception, "An unhandled exception occurred.");
 
-            context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-
-            var result = JsonSerializer.Serialize(new { error = "An error occurred while processing your request." });
             context.Response.ContentType = "application/json";
+
+            // Determine status code and error message based on exception type
+            HttpStatusCode statusCode;
+            string message;
+
+            switch (exception)
+            {
+                case ValidationException validationException:
+                    statusCode = HttpStatusCode.BadRequest;
+                    message = validationException.Message;  // Custom validation message
+                    break;
+
+                case KeyNotFoundException:
+                    statusCode = HttpStatusCode.NotFound;
+                    message = "The requested resource was not found.";
+                    break;
+
+                case UnauthorizedAccessException:
+                    statusCode = HttpStatusCode.Unauthorized;
+                    message = "You are not authorized to access this resource.";
+                    break;
+
+                default:
+                    statusCode = HttpStatusCode.InternalServerError;
+                    message = "An error occurred while processing your request.";
+                    break;
+            }
+
+            context.Response.StatusCode = (int)statusCode;
+            context.Response.ContentType = "application/json";
+
+            var result = JsonSerializer.Serialize(new { error = message });
+          
             return context.Response.WriteAsync(result);
         }
     }
