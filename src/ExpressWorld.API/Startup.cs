@@ -3,6 +3,7 @@ using ExpressWorld.Application.Handlers;
 using ExpressWorld.Application.Repositories;
 using ExpressWorld.Application.Services;
 using ExpressWorld.Infrastructure.Repositories;
+using ExpressWorld.Shared.AbstractFactory;
 using ExpressWorld.Shared.Configurations;
 using ExpressWorld.Shared.Factories;
 using ExpressWorld.Shared.Mappings;
@@ -33,12 +34,20 @@ namespace ExpressWorld.API
 
             // Register IOptionsMonitor for SupplierConfig
             services.AddSingleton<IOptionsMonitor<List<SupplierConfig>>, OptionsMonitor<List<SupplierConfig>>>();
-            services.AddSingleton<AdapterFactory>();
-
+           // services.AddSingleton<AdapterFactory>();
+            
             services.AddAutoMapper(typeof(AutoMapperProfile));            
             services.AddMediatR(typeof(SearchProductsQueryHandler).Assembly);
-            services.AddScoped<IProductRepository, ProductRepository>();
+           // services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductService, ProductService>();
+
+            //Abstract Factory
+            services.AddSingleton<IAdapterFactory, JsonAdapterFactory>();
+            services.AddSingleton<AbstractAdapterFactory>();
+            services.AddScoped<IAbstractProductRepository, AbstractProductRepository>();
+
+            services.AddSingleton<IAdapterFactory, HttpApiAdapterFactory>();
+            services.AddHttpClient();
 
             // Add services to the container.
             services.AddControllers();

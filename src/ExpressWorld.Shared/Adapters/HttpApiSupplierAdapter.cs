@@ -8,10 +8,10 @@ namespace ExpressWorld.Shared.Adapters
         private readonly string _apiEndpoint;
         private readonly HttpClient _httpClient;
 
-        public HttpApiSupplierAdapter(string apiEndpoint)
+        public HttpApiSupplierAdapter(string apiEndpoint, HttpClient httpClient)
         {
             _apiEndpoint = apiEndpoint;
-            _httpClient = new HttpClient();
+            _httpClient = httpClient;
         }
 
         public async Task<IEnumerable<Product>> LoadProductsAsync(CancellationToken cancellationToken)

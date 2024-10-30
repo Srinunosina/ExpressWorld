@@ -5,7 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 
 namespace ExpressWorld.Shared.Factories
-{   
+{
+    //Consider Using an Abstract Factory with Dependency Injection
     public class AdapterFactory
     {
         private readonly IOptionsMonitor<List<SupplierConfig>> _supplierConfigs;
@@ -31,11 +32,14 @@ namespace ExpressWorld.Shared.Factories
 
             foreach (var supplier in suppliers)
             {
+                //Voilates Open/Closed Principle
+                //ties the factory class to each specific adapter implementation
+                // This is less flexible and makes it difficult to add new adapters without modifying the factory class each time
                 IProductAdapter adapter = supplier.DataSourceType.ToUpper() switch
                 {
                     "JSON" => CreateJsonAdapter(supplier),
                     "SQL" => new SQLSupplierAdapter(_configuration.GetConnectionString("SqlServer")),
-                    "HTTPAPI" => new HttpApiSupplierAdapter(supplier.SourcePath),
+                    "HTTPAPI" => new HttpApiSupplierAdapter(supplier.SourcePath, null),
                     "CSV" => new CSVSupplierAdapter(supplier.SourcePath),
                     _ => throw new NotImplementedException($"Adapter for {supplier.DataSourceType} not implemented.")
                 };
@@ -45,6 +49,8 @@ namespace ExpressWorld.Shared.Factories
             return adapters;
         }
 
+        // Activator.CreateInstance introduces runtime reflection, which can be error-prone, slower, and difficult to test. Using a more type-safe method would improve performance and readability.
+
         private IProductAdapter CreateJsonAdapter(SupplierConfig supplier)
         {
             // Ensure that DtoTypeResolved is checked before using it
@@ -52,7 +58,7 @@ namespace ExpressWorld.Shared.Factories
             {
                 throw new InvalidOperationException($"Could not resolve DTO type '{supplier.DtoType}'.");
             }
-
+            //
             var adapterType = typeof(JSONSupplierAdapter<>).MakeGenericType(supplier.DtoTypeResolved);
             return (IProductAdapter)Activator.CreateInstance(adapterType, supplier, _mapper);
         }
