@@ -3,7 +3,7 @@ using ExpressWorld.Application.Handlers;
 using ExpressWorld.Application.Repositories;
 using ExpressWorld.Application.Services;
 using ExpressWorld.Infrastructure.Repositories;
-using ExpressWorld.Shared.AbstractFactory;
+using ExpressWorld.Shared.FactoryMethod;
 using ExpressWorld.Shared.Configurations;
 using ExpressWorld.Shared.Factories;
 using ExpressWorld.Shared.Mappings;
@@ -43,7 +43,7 @@ namespace ExpressWorld.API
 
             //Abstract Factory
             services.AddSingleton<IAdapterFactory, JsonAdapterFactory>();
-            services.AddSingleton<AbstractAdapterFactory>();
+            services.AddSingleton<FactoryMethodAdapter>();
             services.AddScoped<IAbstractProductRepository, AbstractProductRepository>();
 
             services.AddSingleton<IAdapterFactory, HttpApiAdapterFactory>();

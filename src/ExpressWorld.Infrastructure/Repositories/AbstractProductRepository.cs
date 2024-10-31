@@ -1,6 +1,6 @@
 ﻿using ExpressWorld.Application.Repositories;
 using ExpressWorld.Core.Entities;
-using ExpressWorld.Shared.AbstractFactory;
+using ExpressWorld.Shared.FactoryMethod;
 using ExpressWorld.Shared.Adapters;
 using ExpressWorld.Shared.Configurations;
 using Microsoft.Extensions.Options;

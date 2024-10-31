@@ -1,16 +1,16 @@
-﻿using ExpressWorld.Shared.AbstractFactory;
+﻿using ExpressWorld.Shared.FactoryMethod;
 using ExpressWorld.Shared.Adapters;
 using ExpressWorld.Shared.Configurations;
 using Microsoft.Extensions.Options;
 
 namespace ExpressWorld.Shared.Factories
 {
-    public class AbstractAdapterFactory
+    public class FactoryMethodAdapter
     {
         private readonly IEnumerable<IAdapterFactory> _adapterFactories;
         private readonly IOptionsMonitor<List<SupplierConfig>> _supplierConfigs;
 
-        public AbstractAdapterFactory(IEnumerable<IAdapterFactory> adapterFactories, IOptionsMonitor<List<SupplierConfig>> supplierConfigs)
+        public FactoryMethodAdapter(IEnumerable<IAdapterFactory> adapterFactories, IOptionsMonitor<List<SupplierConfig>> supplierConfigs)
         {
             _adapterFactories = adapterFactories;
             _supplierConfigs = supplierConfigs;

@@ -1,7 +1,7 @@
 ﻿using ExpressWorld.Shared.Adapters;
 using ExpressWorld.Shared.Configurations;
 
-namespace ExpressWorld.Shared.AbstractFactory
+namespace ExpressWorld.Shared.FactoryMethod
 {
     public interface IAdapterFactory
     {

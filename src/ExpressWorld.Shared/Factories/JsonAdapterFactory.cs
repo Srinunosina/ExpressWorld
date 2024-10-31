@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using ExpressWorld.Shared.AbstractFactory;
+using ExpressWorld.Shared.FactoryMethod;
 using ExpressWorld.Shared.Adapters;
 using ExpressWorld.Shared.Configurations;
 
